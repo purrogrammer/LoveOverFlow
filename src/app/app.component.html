@@ -1,8 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-    <li *ngFor="let currentQuestion of Question">{{currentQuestion.description}} <button (click)="editQuestion()">Edit!</button></li>
-
-</ul>
-
+<div *ngIf="selectedQuestion">
+  <h3>{{selectedQuestion.description}}</h3>
+  <p>Answer the question {{selectedQuestion.answer}}</p>
+  <h3>Edit Question</h3>
+  <label>Enter Task Description:</label>
+  <input [(ngModel)]="selectedQuestion.answer">
+  <label>Was this helpful?</label>
+  <br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" [value]="1">1 (Low Priority)<br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" [value]="2">2 (Medium Priority)<br>
+  <input type="radio" [(ngModel)]="selectedTask.priority" [value]="3">3 (High Priority)
+  <button (click)="finishedEditing()">Done</button>
+</div>

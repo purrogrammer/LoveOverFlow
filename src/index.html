@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Stack Overflow Angular Clone</title>
+  <title>Love Overflow: A Stack Overflow Angular clone for relationship advice</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,46 @@
 
   <div class="container">
     <h1>{{main.question}}</h1>
-
+    <h3>{{main.group}} </h3>
+    <h4>{{main.answers}}</h4>
   </div>
 
   <br>
+
+  <div class="clearfix"></div>
+  <h1>Love Overflow</h1>>
+  <h3> Have a relationship question? Ask or answer here!</h3>
+  <form name="main.addForm" class="form" ng-submit="main.addQuestion()">
+      <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" ng-model="main.new.title" required />
+      </div>
+      <div class="form-group">
+          <label>Content</label>
+          <input type="text" class="form-control" ng-model="main.new.content" required />
+      </div>
+      <div class="row">
+
+  <h3>Site Search:</h3>
+  <div class="input-group">
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-search"></span>
+    </span>
+    <input type="text" class="form-control" ng-model="main.searchInput">
+  </div>
+
+  <h3>{{main.questions.length}} Questions:</h3>
+  <ul class="list-group">
+      <li class="list-group-item" ng-repeat="question in main.questions | filter:main.searchInput | orderBy:main.order.key:main.order.reverse" ng-click="showDetails = ! showDetails">
+        <h3>{{question.title}}</h3>
+        <p class="list-group-item" ng-show="showDetails" style="background-color:gainsboro">{{question.content}}</p>
+          <h4 class="list-group-item" ng-show="showDetails" ng-repeat="answer in question.answers">{{answer}}</h4>
+      </li>
+  </ul>
+  <div class="col-xs-6">
+    <button class="btn btn-danger pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Post Question</button>
+</div>
+</div>
+</form>
+</body>
+</html>
